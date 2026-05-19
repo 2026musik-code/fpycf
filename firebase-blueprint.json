@@ -1,0 +1,44 @@
+{
+  "entities": {
+    "User": {
+      "title": "User",
+      "description": "Represents a user in the application.",
+      "type": "object",
+      "properties": {
+        "uid": { "type": "string" },
+        "email": { "type": "string" },
+        "displayName": { "type": "string" },
+        "avatarUrl": { "type": "string" },
+        "dailyViews": { "type": "number", "description": "Number of views today." },
+        "dailyViewsMax": { "type": "number", "description": "Max views allowed per day." },
+        "accountTier": { "type": "string", "enum": ["free", "vip"] },
+        "isBanned": { "type": "boolean" },
+        "isAdmin": { "type": "boolean" },
+        "lastLogin": { "type": "number" },
+        "createdAt": { "type": "number" }
+      },
+      "required": ["uid", "email", "createdAt"]
+    },
+    "Setting": {
+      "title": "Setting",
+      "description": "App settings like popup and pricing.",
+      "type": "object",
+      "properties": {
+        "popupText": { "type": "string" },
+        "popupImageUrl": { "type": "string" },
+        "vipPrice": { "type": "number" },
+        "adminPasscode": { "type": "string", "description": "Passcode to enter admin area." }
+      }
+    }
+  },
+  "firestore": {
+    "/users/{userId}": {
+      "schema": { "$ref": "User" },
+      "description": "Stores user profiles. Created upon first login."
+    },
+    "/settings/{settingId}": {
+      "schema": { "$ref": "Setting" },
+      "description": "Stores global app settings. Only admin can modify."
+    }
+  }
+}
