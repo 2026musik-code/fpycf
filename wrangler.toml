@@ -1,4 +1,4 @@
-name = "fpymini-api"
+name = "fpycf"
 main = "src/app.ts"
 compatibility_date = "2024-03-20"
 compatibility_flags = [ "nodejs_compat" ]
